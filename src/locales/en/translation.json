@@ -1,0 +1,9 @@
+{
+	"navbar": {
+		"title": "Dummy Project",
+		"homepage": "Homepage",
+		"contact-us": "Contact Us",
+		"login": "Login",
+		"logout": "Logout"
+	}
+}

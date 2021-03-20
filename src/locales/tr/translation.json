@@ -1,0 +1,9 @@
+{
+	"navbar": {
+		"title": "Örnek Proje",
+		"homepage": "Anasayfa",
+		"contact-us": "İletişim",
+		"login": "Giriş Yap",
+		"logout": "Çıkış Yap"
+	}
+}
