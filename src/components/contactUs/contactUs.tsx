@@ -15,8 +15,8 @@ export default function ContactUs() {
 	const [isFormSubmited, setIsFormSubmited] = useState(false);
 
 	useEffect(() => {
-		setName(userInfo.name);
-		setEmail(userInfo.email);
+		userInfo.name && setName(userInfo.name);
+		userInfo.email && setEmail(userInfo.email);
 	}, [userInfo]);
 
 	return (
