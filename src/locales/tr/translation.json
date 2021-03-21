@@ -3,7 +3,33 @@
 		"title": "Örnek Proje",
 		"homepage": "Anasayfa",
 		"contact-us": "İletişim",
-		"login": "Giriş Yap",
-		"logout": "Çıkış Yap"
+		"logout": "Çıkış Yap",
+		"login": "Login"
+	},
+	"login": {
+		"title": "Login",
+		"namePlaceholder": "İsim giriniz",
+		"emailPlaceholder": "E-posta giriniz",
+		"passwordPlaceholder": "Şifre giriniz"
+	},
+	"footer": {
+		"descripton": "Evrende, ❤️ ile yapıldı",
+		"welcome": "Hoşgeldin güzel insan"
+	},
+	"homepage": {
+		"title": "Anasayfa",
+		"description": "Ama size zevki kınamak ve acıyı övmek gibi tüm bu yanlış fikrin nasıl doğduğunu açıklamalıyım ve size sistemin tam bir açıklamasını sunacağım ve gerçeğin büyük kaşifinin, insanın usta-yapıcısının gerçek öğretilerini açıklayacağım. mutluluk. Hiç kimse zevkin kendisini reddetmez, sevmez veya ondan kaçmaz, çünkü bu zevktir, zevkin nasıl peşinden gideceğini bilmeyenler rasyonel olarak son derece acı verici sonuçlarla karşılaştıkları için. Acı olduğu için, bazen de acı olduğu için kendi kendine acı çekmeyi seven, peşinde koşan veya arzulayan kimse de yoktur."
+	},
+	"contact-us": {
+		"title": "İletişim",
+		"namePlaceholder": "İsim giriniz",
+		"emailPlaceholder": "E-posta giriniz",
+		"phonePlaceholder": "Telefon numarası giriniz",
+		"textPlaceholder": "Neden bizimle iletişime geçtiğinizi anlatınız",
+		"send": "Gönder"
+	},
+	"dropdown": {
+		"countryPlaceholder": "Ülke arayınız veya seçiniz",
+		"notfound": "Ülke bulunamadı"
 	}
 }

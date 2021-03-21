@@ -6,7 +6,8 @@ export interface IUserInfo {
 }
 
 const AppContext = createContext({
-	userInfo: {} as IUserInfo
+	userInfo: {} as IUserInfo,
+	setUserInfo: (() => {}) as React.Dispatch<React.SetStateAction<IUserInfo>>
 });
 
 export default AppContext;

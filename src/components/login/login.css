@@ -1,0 +1,101 @@
+.login-modal-container {
+	display: none;
+}
+
+.login--open {
+	display: block;
+}
+
+.login-modal__overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 50;
+
+	background: rgba(0, 0, 0, 0.6);
+}
+
+.login__modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 500px;
+	max-width: 80%;
+	height: 500px;
+	max-height: 80%;
+	z-index: 110;
+	background: white;
+	box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
+	overflow: auto;
+}
+
+.login__modal__content {
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 20px 50px 20px 20px;
+}
+
+.login__modal__contet h2 {
+	padding: 1rem;
+	text-align: center;
+}
+
+.login__modal__contet__form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.login__modal__content__input {
+	margin: 2rem;
+	width: 180px;
+	font-size: 16px;
+	padding: 0.4rem;
+}
+
+.login__modal__submit-button {
+	position: absolute;
+	bottom: 1rem;
+	right: 1rem;
+	border-radius: 5%;
+	font-size: 16px;
+	align-self: flex-end;
+	width: 100px;
+	padding: 0.4rem;
+}
+
+.login__form--submited .login__modal__content__input:valid {
+	border: 1px solid green;
+}
+
+.login__form--submited .login__modal__content__input:invalid {
+	border: 1px solid red;
+}
+
+.login__modal__close-button {
+	position: absolute;
+	z-index: 1;
+	top: 0.5rem;
+	right: 0.5rem;
+	border: 0;
+	background: rgba(49, 48, 48);
+	color: honeydew;
+	padding: 0.25rem 0.5rem;
+	font-size: 1rem;
+}
+
+.login__modal__contet__locale {
+	position: absolute;
+	bottom: 1rem;
+	left: 1rem;
+}
+
+.login__modal__contet__locale select {
+	padding: 0.4rem;
+}

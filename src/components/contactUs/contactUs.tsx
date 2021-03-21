@@ -1,3 +1,81 @@
+import { useContext, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import AppContext from '../../context/AppContext';
+import SearchableDropdown from '../commons/searchableDropdown/searchableDropdown';
+import './contactUs.css';
+
 export default function ContactUs() {
-	return <div>{}</div>;
+	const { t } = useTranslation();
+	const { userInfo } = useContext(AppContext);
+	const [name, setName] = useState(userInfo.name || '');
+	const [email, setEmail] = useState(userInfo.email || '');
+	const [phone, setPhone] = useState('');
+	const [country, setCountry] = useState('');
+	const [text, setText] = useState('');
+	const [isFormSubmited, setIsFormSubmited] = useState(false);
+
+	useEffect(() => {
+		setName(userInfo.name);
+		setEmail(userInfo.email);
+	}, [userInfo]);
+
+	return (
+		<div className='contact-us-container'>
+			<h2 className='contact-us-container__title'>{t('contact-us.title')}</h2>
+			<form
+				action='https://example.com'
+				method='post'
+				target='__blank'
+				className={`contact-us__form${isFormSubmited ? ' contact-us__form--submited' : ''}`}
+			>
+				<input
+					className='contact-us__form__field'
+					name='name'
+					value={name}
+					placeholder={t('contact-us.namePlaceholder')}
+					onChange={({ target: { value } }) => setName(value)}
+					required
+				/>
+				<input
+					className='contact-us__form__field'
+					name='email'
+					type='email'
+					value={email}
+					placeholder={t('contact-us.emailPlaceholder')}
+					onChange={({ target: { value } }) => setEmail(value)}
+					required
+				/>
+				<input
+					className='contact-us__form__field'
+					name='phone'
+					type='tel'
+					value={phone}
+					placeholder={t('contact-us.phonePlaceholder')}
+					onChange={({ target: { value } }) => setPhone(value)}
+					required
+				/>
+				<SearchableDropdown
+					parentClass='contact-us__form__field contact-us__form__field--country'
+					country={country}
+					setCountry={setCountry}
+					required
+				/>
+				<textarea
+					className='contact-us__form__field'
+					name='text'
+					value={text}
+					placeholder={t('contact-us.textPlaceholder')}
+					onChange={({ target: { value } }) => setText(value)}
+					required
+				/>
+				<button
+					className='contact-us__form__field contact-us__form__submit-button'
+					type='submit'
+					onClick={() => setIsFormSubmited(true)}
+				>
+					{t('contact-us.send')}
+				</button>
+			</form>
+		</div>
+	);
 }

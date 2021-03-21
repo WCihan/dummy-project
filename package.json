@@ -20,7 +20,7 @@
 		"eject": "react-scripts eject",
 		"lint": "tsc --noEmit && eslint src/**/*.ts{,x} -c .eslintrc.js --ignore-path .eslintignore",
 		"format": "eslint --fix src/**/*.ts{,x} -c .eslintrc.js --ignore-path .eslintignore",
-		"prettier-format": "prettier --config .prettierrc 'src/**/*.ts{,x}' --write"
+		"prettier-format": "prettier --config .prettierrc src/**/*.ts{,x} --write"
 	},
 	"browserslist": {
 		"production": [

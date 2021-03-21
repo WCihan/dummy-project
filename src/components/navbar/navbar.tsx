@@ -2,16 +2,15 @@ import { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import { ReactComponent as Logo } from '../../assets/image/logo.svg';
-import AppContext from '../../context/AppContext';
-import { resources } from '../../i18n';
+import AppContext, { IUserInfo } from '../../context/AppContext';
+import LocaleSelector from '../commons/localeSelector/localeSelector';
+import { ILoginProps } from '../login/login';
 import './navbar.css';
 
-const languages = Object.keys(resources);
-
-function Navbar() {
-	const { t, i18n } = useTranslation();
+function Navbar({ isLoginModalOpen, setIsLoginModalOpen }: ILoginProps) {
+	const { t } = useTranslation();
 	const location = useLocation();
-	const { userInfo } = useContext(AppContext);
+	const { userInfo, setUserInfo } = useContext(AppContext);
 	const [isMenuActive, setIsMenuActive] = useState(false);
 
 	return (
@@ -49,13 +48,7 @@ function Navbar() {
 						</Link>
 					</div>
 					<div className='navbar__right__item'>
-						<select onChange={({ target: { value } }) => i18n.changeLanguage(value)} value={i18n.language}>
-							{languages.map((l) => (
-								<option value={l} key={l}>
-									{l}
-								</option>
-							))}
-						</select>
+						<LocaleSelector />
 					</div>
 					<div className='navbar__right__item'>
 						{userInfo && userInfo.name ? (
@@ -68,6 +61,7 @@ function Navbar() {
 											<button
 												type='button'
 												className='navbar__right__item__user__logout navbar--button'
+												onClick={() => setUserInfo({} as IUserInfo)}
 											>
 												{t('navbar.logout')}
 											</button>
@@ -76,7 +70,11 @@ function Navbar() {
 								</div>
 							</div>
 						) : (
-							<button type='button' className='navbar__right__item__login navbar--button'>
+							<button
+								type='button'
+								className='navbar__right__item__login navbar--button'
+								onClick={() => setIsLoginModalOpen(!isLoginModalOpen)}
+							>
 								{t('navbar.login')}
 							</button>
 						)}

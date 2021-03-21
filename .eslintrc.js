@@ -143,6 +143,7 @@ module.exports = {
 		'react/destructuring-assignment': 'warn',
 		'react/button-has-type': 'warn',
 		'react/prefer-stateless-function': 'off',
-		'@typescript-eslint/explicit-module-boundary-types': 'off'
+		'@typescript-eslint/explicit-module-boundary-types': 'off',
+		'jsx-a11y/no-noninteractive-element-to-interactive-role': 'off'
 	}
 };

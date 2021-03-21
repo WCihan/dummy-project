@@ -1,3 +1,18 @@
+import { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
+import AppContext from '../../context/AppContext';
+import './footer.css';
+
 export default function Footer() {
-	return <div>{}</div>;
+	const { t } = useTranslation();
+	const {
+		userInfo: { name }
+	} = useContext(AppContext);
+
+	return (
+		<div className='footer-container'>
+			<span>{t('footer.descripton')}</span>
+			{name && <span>{`${t('footer.welcome')} ${name}`}</span>}
+		</div>
+	);
 }
