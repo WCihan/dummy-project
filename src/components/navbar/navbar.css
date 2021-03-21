@@ -1,18 +1,18 @@
 @keyframes hide {
 	from {
-		opacity: 1;
+		visibility: visible;
 	}
 	to {
-		opacity: 0;
+		visibility: hidden;
 	}
 }
 
 @keyframes show {
 	from {
-		opacity: 0;
+		visibility: hidden;
 	}
 	to {
-		opacity: 1;
+		visibility: visible;
 	}
 }
 
@@ -196,13 +196,13 @@
 	}
 
 	.navbar__mobil-menu {
-		animation: hide 0.5s;
+		animation: hide 0.2s;
 		animation-iteration-count: 1;
 		animation-fill-mode: forwards;
 	}
 
 	.navbar-container.--hamburger-active .navbar__mobil-menu {
-		animation: show 0.5s;
+		animation: show 1s;
 		animation-iteration-count: 1;
 		animation-fill-mode: forwards;
 	}
@@ -217,6 +217,11 @@
 		height: 100vh;
 		justify-content: flex-start;
 		transform-origin: 0% 0%;
+		transition: width 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+	}
+
+	.navbar-container + div {
+		width: 90%;
 		transition: width 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
 	}
 
