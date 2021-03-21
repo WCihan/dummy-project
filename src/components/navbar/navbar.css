@@ -1,3 +1,21 @@
+@keyframes hide {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes show {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
 .navbar-container {
 	justify-content: space-between;
 	background-color: rgba(49, 48, 48);
@@ -178,13 +196,15 @@
 	}
 
 	.navbar__mobil-menu {
-		transform-origin: 0% 0%;
-		transform: translate(-300%, 0);
-		transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+		animation: hide 0.5s;
+		animation-iteration-count: 1;
+		animation-fill-mode: forwards;
 	}
 
 	.navbar-container.--hamburger-active .navbar__mobil-menu {
-		transform: none;
+		animation: show 0.5s;
+		animation-iteration-count: 1;
+		animation-fill-mode: forwards;
 	}
 
 	.navbar--flex-row {
