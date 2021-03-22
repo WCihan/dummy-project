@@ -2,10 +2,21 @@ import { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import AppContext from '../../context/AppContext';
 import SearchableDropdown from '../commons/searchableDropdown/searchableDropdown';
+import countriesEn from '../../locales/en/countries.json';
+import countriesTr from '../../locales/tr/countries.json';
 import './contactUs.css';
 
+export interface ICountry {
+	code: string;
+	name: string;
+}
+
 export default function ContactUs() {
-	const { t } = useTranslation();
+	const { t, i18n } = useTranslation();
+	const countries = (i18n.language === 'tr' ? countriesTr : countriesEn).map(({ code, name }) => ({
+		key: code,
+		label: name
+	}));
 	const { userInfo } = useContext(AppContext);
 	const [name, setName] = useState(userInfo.name || '');
 	const [email, setEmail] = useState(userInfo.email || '');
@@ -56,8 +67,9 @@ export default function ContactUs() {
 				/>
 				<SearchableDropdown
 					parentClass='contact-us__form__field contact-us__form__field--country'
-					country={country}
-					setCountry={setCountry}
+					selectedItem={country}
+					setSelectedItem={setCountry}
+					options={countries}
 					required
 				/>
 				<textarea

@@ -1,25 +1,29 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import countriesEn from '../../../locales/en/countries.json';
-import countriesTr from '../../../locales/tr/countries.json';
 import './searchableDropdown.css';
 
-export interface ICountry {
-	code: string;
-	name: string;
+export interface IOption {
+	key: string;
+	label: string;
 }
 
 export interface ISearchableCountry {
+	selectedItem: string;
+	setSelectedItem: React.Dispatch<React.SetStateAction<string>>;
+	options: IOption[];
 	parentClass?: string;
-	country: string;
-	setCountry: React.Dispatch<React.SetStateAction<string>>;
 	required?: boolean;
 }
 
-export default function SearchableDropdown({ parentClass, country, setCountry, required }: ISearchableCountry) {
-	const { t, i18n } = useTranslation();
-	const countries = i18n.language === 'tr' ? countriesTr : countriesEn;
-	const [filteredCountries, setFilteredCountries] = useState(countries);
+export default function SearchableDropdown({
+	selectedItem,
+	setSelectedItem,
+	options,
+	parentClass,
+	required
+}: ISearchableCountry) {
+	const { t } = useTranslation();
+	const [filteredOptions, setFilteredOptions] = useState(options);
 	const [searchValue, setSearchValue] = useState('');
 	const [isOpen, setIsOpen] = useState(false);
 	const containerRef = useRef() as React.MutableRefObject<HTMLDivElement>;
@@ -39,36 +43,36 @@ export default function SearchableDropdown({ parentClass, country, setCountry, r
 	}, []);
 
 	useEffect(() => {
-		setFilteredCountries(
+		setFilteredOptions(
 			searchValue
-				? countries.filter(
-						({ code, name }) =>
-							code.toLowerCase().includes(searchValue.toLowerCase()) ||
-							name.toLowerCase().includes(searchValue.toLowerCase())
+				? options.filter(
+						({ key, label }) =>
+							key.toLowerCase().includes(searchValue.toLowerCase()) ||
+							label.toLowerCase().includes(searchValue.toLowerCase())
 				  )
-				: countries
+				: options
 		);
-	}, [countries, searchValue]);
+	}, [options, searchValue]);
 
 	function onSearch({ target: { value } }: React.ChangeEvent<HTMLInputElement>) {
 		!isOpen && setIsOpen(true);
 		setSearchValue(value);
-		!value && setCountry('');
+		!value && setSelectedItem('');
 	}
 
-	function onClickSelect(countryItem: ICountry) {
-		setCountry(countryItem.code);
-		setSearchValue(countryItem.name);
+	function onClickSelect(clickedItem: IOption) {
+		setSelectedItem(clickedItem.key);
+		setSearchValue(clickedItem.label);
 		setIsOpen(false);
 	}
 
 	function onKeySelect(e: React.KeyboardEvent<HTMLElement>) {
 		if (e.key && e.key === 'Enter') {
-			if (filteredCountries.length === 1) {
-				setCountry(filteredCountries[0].code);
-				setSearchValue(filteredCountries[0].name);
+			if (filteredOptions.length === 1) {
+				setSelectedItem(filteredOptions[0].key);
+				setSearchValue(filteredOptions[0].label);
 				setIsOpen(false);
-			} else if (filteredCountries.length === 0) {
+			} else if (filteredOptions.length === 0) {
 				setSearchValue('');
 			}
 		}
@@ -87,19 +91,19 @@ export default function SearchableDropdown({ parentClass, country, setCountry, r
 				required={required}
 			/>
 			<ul className={`country__menu${isOpen ? ' country__menu---open' : ''}`}>
-				{filteredCountries.length ? (
-					filteredCountries.map((c) => (
+				{filteredOptions.length ? (
+					filteredOptions.map((opt) => (
 						<li
 							role='button'
 							className={`country__menu__item${
-								c.code === country ? ' country__menu__item--selected' : ''
+								opt.key === selectedItem ? ' country__menu__item--selected' : ''
 							}`}
-							key={c.code}
+							key={opt.key}
 							tabIndex={0}
 							onKeyDown={onKeySelect}
-							onClick={() => onClickSelect(c)}
+							onClick={() => onClickSelect(opt)}
 						>
-							{c.name}
+							{opt.label}
 						</li>
 					))
 				) : (
