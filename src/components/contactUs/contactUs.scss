@@ -1,0 +1,64 @@
+@import '../../assets/styles/mixins.scss';
+
+.contact-us-container {
+	padding: 1rem 2rem;
+}
+
+.contact-us-container__title {
+	margin: 1rem;
+}
+
+.contact-us__form {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+}
+
+@include mobil {
+	.contact-us__form {
+		width: auto;
+	}
+}
+
+.contact-us__form__field {
+	@include input;
+}
+
+textarea.contact-us__form__field {
+	width: 90%;
+	max-width: 90%;
+	min-width: 200px;
+	min-height: 20px;
+}
+
+.contact-us__form__submit-button {
+	align-self: flex-end;
+}
+
+.contact-us__form__field--country {
+	padding: 0;
+
+	.country__menu {
+		top: calc(3.5rem - 4px);
+		left: 1.5rem;
+		width: 12rem;
+	}
+
+	.country__search {
+		@include input;
+	}
+}
+
+.contact-us__form--submited {
+	.contact-us__form__field:invalid,
+	.country__search:invalid,
+	textarea:invalid {
+		border: 1px solid red;
+	}
+
+	.contact-us__form__field:valid,
+	.country__search:valid,
+	textarea:valid {
+		border: 1px solid green;
+	}
+}

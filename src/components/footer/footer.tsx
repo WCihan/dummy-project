@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import AppContext from '../../context/AppContext';
-import './footer.css';
+import './footer.scss';
 
 export default function Footer() {
 	const { t } = useTranslation();

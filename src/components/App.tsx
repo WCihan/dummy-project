@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import './App.css';
+import './App.scss';
 import ContactUs from './contactUs/contactUs';
 import Footer from './footer/footer';
 import Homepage from './homepage/homepage';

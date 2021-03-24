@@ -1,0 +1,50 @@
+@import '../../../assets/styles/mixins.scss';
+
+.search-country {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+.country__item {
+	li {
+		padding: 0.3rem 0.5rem;
+	}
+}
+
+.country__search {
+	box-sizing: content-box;
+	width: 11rem;
+	padding: 0.5rem;
+}
+
+.country__menu {
+	display: none;
+	position: absolute;
+	list-style-type: none;
+	width: calc(12rem + 2px);
+	top: calc(2rem + 2px);
+	padding: 0;
+	margin: 0;
+	overflow: auto;
+	max-height: 7rem;
+	background-color: $white;
+	border: 1px solid gray;
+}
+
+.country__menu__item {
+	cursor: pointer;
+	border-bottom: 1px solid $black;
+}
+
+@include default-hover-and-focus('.country__menu__item');
+
+.country__menu__item {
+	&:last-child {
+		border: none;
+	}
+}
+
+.country__menu---open {
+	display: block;
+}

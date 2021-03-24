@@ -1,0 +1,72 @@
+@import './variables.scss';
+
+@mixin mobil {
+	@media (max-width: #{$mobil-width}) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media (min-width: #{$desktop-width}) {
+		@content;
+	}
+}
+
+@mixin row {
+	display: flex;
+	flex-direction: row;
+}
+
+@mixin transform($property) {
+	-webkit-transform: $property;
+	-ms-transform: $property;
+	transform: $property;
+}
+
+@keyframes hide {
+	from {
+		visibility: visible;
+	}
+	to {
+		visibility: hidden;
+	}
+}
+
+@keyframes show {
+	from {
+		visibility: hidden;
+	}
+	to {
+		visibility: visible;
+	}
+}
+
+@mixin animate-hide($timing: 0.5s) {
+	animation: hide $timing;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+@mixin animate-show($timing: 0.5s) {
+	animation: show $timing;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+}
+
+@mixin input {
+	margin: 1.5rem;
+	width: 180px;
+	padding: 0.3rem;
+	font-size: $regular-font-size;
+}
+
+@mixin default-hover-and-focus($class) {
+	#{$class} {
+		&:hover,
+		&:focus {
+			color: $white;
+			background-color: $hover-green;
+			@content;
+		}
+	}
+}

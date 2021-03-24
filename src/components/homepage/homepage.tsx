@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import './homepage.css';
+import './homepage.scss';
 
 export default function Homepage() {
 	const { t } = useTranslation();

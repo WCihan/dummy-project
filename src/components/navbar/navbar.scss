@@ -1,0 +1,268 @@
+@import '../../assets/styles/mixins.scss';
+
+.navbar-container {
+	justify-content: space-between;
+	background-color: $black;
+	color: $white;
+	z-index: 1;
+}
+
+.navbar__left {
+	width: 50%;
+
+	svg {
+		width: 100px;
+		height: 100px;
+	}
+}
+
+.navbar__hamburger-icon {
+	display: none;
+}
+
+.navbar__left__title {
+	display: flex;
+	align-items: center;
+	font-weight: 600;
+	font-size: $title-font-size;
+}
+
+.navbar__right {
+	width: 50%;
+	justify-content: space-evenly;
+
+	a {
+		text-decoration: none;
+		padding: 0.5rem;
+		white-space: nowrap;
+		color: $white;
+	}
+}
+
+.navbar__right__item__login {
+	padding: 0.5rem;
+	border: unset;
+	cursor: pointer;
+	background-color: unset;
+	color: $white;
+}
+
+.navbar--button {
+	padding: 0.5rem;
+	border: unset;
+	cursor: pointer;
+	background-color: unset;
+	color: $white;
+	font-size: $regular-font-size;
+}
+
+.navbar--flex-row {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.navbar__right__item {
+	select {
+		margin: 0.5rem;
+		padding: 0.4rem;
+	}
+
+	@include default-hover-and-focus('> .navbar--button:focus, > .navbar--button:hover') {
+		box-shadow: 0px 8px 16px 0px $box-shadow;
+		outline: none;
+	}
+
+	> .navbar--button--active {
+		background-color: $active;
+	}
+}
+
+.navbar__right__item__user__dropdown {
+	ul {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+}
+
+.navbar__right__item__user__dropdown__item {
+	padding: 1rem 1rem 1rem 0.5rem;
+	color: $white;
+	overflow-wrap: anywhere;
+}
+
+.navbar__right__item__user__logout {
+	padding-left: 0;
+	font-size: $regular-font-size;
+	color: $white;
+}
+
+@include mobil {
+	.navbar__mobil-menu {
+		@include animate-hide(0.1s);
+		visibility: hidden;
+	}
+
+	.navbar__left__title {
+		overflow-wrap: anywhere;
+	}
+
+	.navbar__left {
+		height: 10vh;
+		width: 60%;
+		margin-bottom: 1rem;
+
+		svg {
+			display: none;
+		}
+	}
+
+	.navbar-container.--hamburger-active {
+		width: 50%;
+
+		.navbar__mobil-menu {
+			@include animate-show(0.5s 0.5s);
+		}
+
+		.navbar__hamburger-icon {
+			left: calc(100% - 40px);
+			@include transform(translate(0, -50%));
+		}
+
+		+ div {
+			width: 50%;
+		}
+	}
+
+	.navbar__hamburger-icon {
+		display: block;
+		position: absolute;
+		z-index: 2;
+		-webkit-user-select: none;
+		user-select: none;
+		top: 5%;
+		left: 50%;
+		@include transform(translate(-50%, -50%) scale(0.7));
+		transition: left 0.5s ease-in-out, transform 0.5s ease-in-out;
+
+		input {
+			position: absolute;
+			display: block;
+			width: 25px;
+			height: 25px;
+			opacity: 0;
+			z-index: 3;
+			-webkit-touch-callout: none;
+			cursor: pointer;
+
+			&:checked {
+				~ span {
+					opacity: 1;
+					@include transform(rotate(-45deg) translate(0px, 1px));
+					background: $white;
+
+					&:nth-last-child(2) {
+						opacity: 0;
+						@include transform(rotate(0deg) scale(0.2, 0.2));
+					}
+
+					&:nth-last-child(3) {
+						opacity: 1;
+						@include transform(rotate(45deg) translate(5px, 1px));
+					}
+				}
+			}
+		}
+
+		span {
+			display: block;
+			width: 25px;
+			height: 3px;
+			margin-bottom: 5px;
+			position: relative;
+			background: $white;
+			border-radius: 3px;
+			z-index: 2;
+			transform-origin: 4px 0px;
+			transition: transform 0.5s ease-in-out, background 0.5s ease-in-out, opacity 0.55s ease;
+
+			&:first-child {
+				transform-origin: 0% 0%;
+			}
+
+			&:nth-last-child(2) {
+				transform-origin: 0% 100%;
+			}
+		}
+	}
+
+	.navbar--flex-row {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.navbar-container {
+		width: 10%;
+		height: 100vh;
+		justify-content: flex-start;
+		transform-origin: 0% 0%;
+		transition: width 0.5s ease-in-out;
+		position: relative;
+
+		+ div {
+			width: 90%;
+			transition: width 0.5s ease-in-out;
+		}
+	}
+
+	.navbar__right {
+		width: 100%;
+		justify-content: flex-start;
+	}
+	.navbar__left__title {
+		height: 100%;
+		font-size: $subtitle-font-size;
+		padding-left: 1rem;
+	}
+
+	.navbar__right__item {
+		padding: 1rem;
+	}
+
+	.navbar__right__item__user__name {
+		padding: 0 1rem 1rem 0.5rem;
+	}
+
+	.navbar__right__item__user__logout {
+		padding: 0;
+	}
+}
+
+@include desktop {
+	.navbar__right__item__user {
+		&:hover {
+			> .navbar__right__item__user__dropdown {
+				display: block;
+			}
+		}
+	}
+
+	.navbar__right__item__user__dropdown {
+		display: none;
+		position: absolute;
+		background-color: $black;
+		min-width: 160px;
+		box-shadow: 0px 8px 16px 0px $box-shadow;
+		z-index: 2;
+		right: 20px;
+
+		ul {
+			padding: 1rem;
+		}
+	}
+
+	.navbar__right__item__user__dropdown__item {
+		padding: 1rem;
+	}
+}

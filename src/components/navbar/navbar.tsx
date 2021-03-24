@@ -5,7 +5,7 @@ import { ReactComponent as Logo } from '../../assets/image/logo.svg';
 import AppContext, { IUserInfo } from '../../context/AppContext';
 import LocaleSelector from '../commons/localeSelector/localeSelector';
 import { ILoginProps } from '../login/login';
-import './navbar.css';
+import './navbar.scss';
 
 function Navbar({ isLoginModalOpen, setIsLoginModalOpen }: ILoginProps) {
 	const { t } = useTranslation();

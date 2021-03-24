@@ -1,3 +1,5 @@
+@import '../../assets/styles/mixins.scss';
+
 .login-modal-container {
 	display: none;
 }
@@ -13,50 +15,57 @@
 	width: 100%;
 	height: 100%;
 	z-index: 50;
-
-	background: rgba(0, 0, 0, 0.6);
+	background: $overlay-background;
 }
 
 .login__modal {
 	position: fixed;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	@include transform(translate(-50%, -50%));
 	width: 500px;
-	max-width: 80%;
 	height: 500px;
+	max-width: 80%;
 	max-height: 80%;
 	z-index: 110;
-	background: white;
-	box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9);
+	background: $white;
+	box-shadow: 0 0 60px 10px $modal-box-shadow;
 	overflow: auto;
 }
 
 .login__modal__content {
-	position: relative;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	padding: 20px 50px 20px 20px;
+	padding: 2rem;
+
+	h2 {
+		padding: 1rem;
+		text-align: center;
+	}
 }
 
-.login__modal__contet h2 {
-	padding: 1rem;
-	text-align: center;
-}
-
-.login__modal__contet__form {
+.login__modal__content__form {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
+.login__modal__content__title {
+	font-size: $title-font-size;
+}
+
 .login__modal__content__input {
-	margin: 2rem;
-	width: 180px;
-	font-size: 16px;
-	padding: 0.4rem;
+	@include input;
+}
+
+.login__form--submited {
+	.login__modal__content__input {
+		&:valid {
+			border: 1px solid green;
+		}
+
+		&:invalid {
+			border: 1px solid red;
+		}
+	}
 }
 
 .login__modal__submit-button {
@@ -64,18 +73,11 @@
 	bottom: 1rem;
 	right: 1rem;
 	border-radius: 5%;
-	font-size: 16px;
+	font-size: $regular-font-size;
 	align-self: flex-end;
-	width: 100px;
+	width: 7rem;
 	padding: 0.4rem;
-}
-
-.login__form--submited .login__modal__content__input:valid {
-	border: 1px solid green;
-}
-
-.login__form--submited .login__modal__content__input:invalid {
-	border: 1px solid red;
+	cursor: pointer;
 }
 
 .login__modal__close-button {
@@ -84,18 +86,18 @@
 	top: 0.5rem;
 	right: 0.5rem;
 	border: 0;
-	background: rgba(49, 48, 48);
-	color: honeydew;
+	background: $black;
+	color: $white;
 	padding: 0.25rem 0.5rem;
 	font-size: 1rem;
 }
 
-.login__modal__contet__locale {
+.login__modal__content__locale {
 	position: absolute;
 	bottom: 1rem;
 	left: 1rem;
-}
 
-.login__modal__contet__locale select {
-	padding: 0.4rem;
+	select {
+		padding: 0.4rem;
+	}
 }

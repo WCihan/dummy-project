@@ -4,7 +4,7 @@ import AppContext from '../../context/AppContext';
 import SearchableDropdown from '../commons/searchableDropdown/searchableDropdown';
 import countriesEn from '../../locales/en/countries.json';
 import countriesTr from '../../locales/tr/countries.json';
-import './contactUs.css';
+import './contactUs.scss';
 
 export interface ICountry {
 	code: string;
@@ -66,7 +66,7 @@ export default function ContactUs() {
 					required
 				/>
 				<SearchableDropdown
-					parentClass='contact-us__form__field contact-us__form__field--country'
+					parentClass='contact-us__form__field--country'
 					selectedItem={country}
 					setSelectedItem={setCountry}
 					options={countries}

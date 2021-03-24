@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import AppContext from '../../context/AppContext';
 import LocaleSelector from '../commons/localeSelector/localeSelector';
-import './login.css';
+import './login.scss';
 
 export interface ILoginProps {
 	isLoginModalOpen: boolean;
@@ -46,11 +46,11 @@ export default function Login({ isLoginModalOpen, setIsLoginModalOpen }: ILoginP
 				>
 					X
 				</button>
-				<div className='login__modal__contet'>
-					<h2>{t('login.title')}</h2>
+				<div className='login__modal__content'>
+					<h2 className='login__modal__content__title'>{t('login.title')}</h2>
 					<form
 						onSubmit={onSubmit}
-						className={`login__modal__contet__form${isFormSubmited ? ' login__form--submited' : ''}`}
+						className={`login__modal__content__form${isFormSubmited ? ' login__form--submited' : ''}`}
 					>
 						<input
 							className='login__modal__content__input'
@@ -86,7 +86,7 @@ export default function Login({ isLoginModalOpen, setIsLoginModalOpen }: ILoginP
 							{t('login.title')}
 						</button>
 					</form>
-					<div className='login__modal__contet__locale'>
+					<div className='login__modal__content__locale'>
 						<LocaleSelector />
 					</div>
 				</div>

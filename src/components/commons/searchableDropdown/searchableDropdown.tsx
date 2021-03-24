@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import './searchableDropdown.css';
+import './searchableDropdown.scss';
 
 export interface IOption {
 	key: string;
@@ -81,7 +81,7 @@ export default function SearchableDropdown({
 	return (
 		<div className={`search-country${parentClass ? ` ${parentClass}` : ''}`} ref={containerRef}>
 			<input
-				className='country__search'
+				className='country__item country__search'
 				type='search'
 				value={searchValue}
 				onChange={onSearch}
@@ -90,7 +90,7 @@ export default function SearchableDropdown({
 				placeholder={t('dropdown.countryPlaceholder')}
 				required={required}
 			/>
-			<ul className={`country__menu${isOpen ? ' country__menu---open' : ''}`}>
+			<ul className={`country__item country__menu${isOpen ? ' country__menu---open' : ''}`}>
 				{filteredOptions.length ? (
 					filteredOptions.map((opt) => (
 						<li
